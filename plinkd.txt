@@ -1,0 +1,11 @@
+agi agi_v2 agi_v3 agi_v4 checks cli console cycle +
+font getopt getopt1 global graphics id inv +
+keyboard logic lzw main menu motion objects op_cmd +
+op_dbg op_test patches picture rand savegame +
+silent sound sprite text view words +
+daudio fileglob path pcvid
+sar /NOIG /STACK:36000 /far /CODEVIEW
+NUL
+"PHAPI.LIB" + "LLIBPE.LIB" +
+/NOD:LLIBCE LLIBCEP.LIB
+PROTMODE
