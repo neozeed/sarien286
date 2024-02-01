@@ -1,3 +1,4 @@
+![sairen 386 on pcem](https://github.com/neozeed/sarien286/assets/9031439/2817b30f-7900-4666-8446-d748d982f0da)
 
 
 This is shamelessly forked from https://github.com/SimonKagstrom/sarien-j2me
