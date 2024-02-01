@@ -88,6 +88,19 @@ extern char **cibyl_read_cibar_directory(char *base_dir);
 #  undef _TRACE
 #endif
 
+#ifdef __WATCOMC__
+#  undef USE_CONSOLE
+#  undef USE_PCM_SOUND
+#  undef USE_HIRES
+# define USE_COMMAND_LINE
+#  undef AGDS_SUPPORT
+#  undef OPT_LIST_OBJECTS
+#  undef OPT_PICTURE_VIEWER
+#  undef OPT_LIST_DICT
+#  undef USE_MOUSE
+#  undef _TRACE
+#endif
+
 /*
  * Memory allocation
  */
@@ -101,10 +114,13 @@ extern char **cibyl_read_cibar_directory(char *base_dir);
  *    (compact, large, and huge), my program hangs.
  * A. Make sure that you have #include <alloc.h> in your program.
  */
-//#ifdef __TURBOC__
-#ifdef _MSC_VER
+#ifdef __WATCOMC__ 
 #include <malloc.h>
-#else
+#endif
+#if defined _MSC_VER
+#include <malloc.h>
+#endif
+#ifdef __TURBOC__
 #  include <alloc.h>
 #endif
 

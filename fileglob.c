@@ -11,6 +11,24 @@
 #include <stdlib.h>
 #include <string.h>
 #include <dos.h>
+#ifdef __WATCOMC__
+#include <direct.h>
+
+/* yes this is missing from Watcom 7
+   so I ended up linking with Watcom 10's libraries...
+   Obviously this will conflict with version 10 maybe 8/9 as well?
+*/
+struct find_t {
+        char reserved[21];      /* reserved for use by DOS    */
+        char attrib;            /* attribute byte for file    */
+        unsigned short wr_time; /* time of last write to file */
+        unsigned short wr_date; /* date of last write to file */
+        unsigned long  size;    /* length of file in bytes    */
+        char name[13];          /* null-terminated filename   */
+};
+#define _find_t find_t
+
+#endif
 
 #include "sarien.h"
 #include "agi.h"

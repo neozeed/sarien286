@@ -1,0 +1,39 @@
+OBJS = agi.obj agi_v2.obj agi_v3.obj checks.obj cli.obj console.obj cycle.obj \
+	font.obj getopt.obj getopt1.obj global.obj graphics.obj id.obj \
+	inv.obj keyboard.obj logic.obj lzw.obj main.obj menu.obj motion.obj objects.obj \
+	op_cmd.obj op_dbg.obj op_test.obj patches.obj picture.obj picview.obj \
+	rand.obj savegame.obj silent.obj sound.obj sprite.obj text.obj view.obj words.obj \
+	daudio.obj fileglob.obj path.obj 
+
+CC = wcl386 
+MEM = /3s
+ZOPT = 
+OPT = /Ox
+CPU = 
+OS = 
+DEBUG = # /Zi
+INCLUDES = -I..\h -Iinclude
+
+CFLAGS =  $(MEM) $(CPU) $(OPT)  $(OS) $(DEBUG) -D__MSDOS__  $(INCLUDES)
+ZCFLAGS = $(MEM) $(CPU) $(ZOPT) $(OS) $(DEBUG) -D__MSDOS__  $(INCLUDES)
+
+386.exe: $(OBJS) pharcga3.obj
+	linkr.exe @386
+	copy /Y 386.exp \dos\sq2
+	dosbox
+
+op_cmd.obj: op_cmd.c
+	msdos wcc386 $(ZCFLAGS) op_cmd.c -od -Iinclude
+
+# sound.c(616) : fatal error C1001: Internal Compiler Error
+#                (compiler file '@(#)regMD.c:1.100', line 1017)
+#                Contact Microsoft Product Support Services
+#sound.obj: sound.c
+#	msdos wcc386  $(ZCFLAGS) sound.c -od -Ih -Iinclude
+
+daudio.obj: dummy.c
+	$(CC) $(CFLAGS) /c /Fodaudio.obj dummy.c
+
+#getopt.obj: getopt.c
+#	msdos wcc386 getopt.c $(ZCFLAGS)
+

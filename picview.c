@@ -165,6 +165,8 @@ next_pic:
 end_view:
 	return ec;
 }
-
+#else
+/* to make Watcom 7 happy */
+void picview_stub(){}
 #endif /* OPT_PICTURE_VIEWER */
 

@@ -40,5 +40,11 @@ static void dummy2_close_sound ()
 void nosound(){}
 void sound(){}
 
+/* Watcom 7 isn't C++ ified */
+#ifdef __WATCOMC__
+void _assert(){}
+#endif
+
+
 
 
