@@ -12,10 +12,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-//#include <graph.h>
 #include <dos.h>
 
-//#include <pharlap.h>
 #define PHARLAP_CONVMEM_SEL 0x34
 
 char far *textptr;	//pointer to the text buffer
@@ -23,11 +21,8 @@ char textbuf[4000];
 
 char far * gptr;	//pointer to cga ram
 
-//REALPTR old_real_timer_tick;
-//PIHANDLER old_prot_timer_tick;
-//void _interrupt _far new_prot_timer_tick(REGS16);
-void (__interrupt __far *prev_int_irq0)();
-void __interrupt __far timer_rtn();
+void (interrupt far *prev_int_irq0)();
+void interrupt far timer_rtn();
 #define IRQ0          0x08
 #define CLOCK_INC 4
 
@@ -89,8 +84,6 @@ static UINT8 cga_map[16] = {
 static void pc_timer ()
 {
 	static UINT32 cticks = 0;
-//clock_ticks+=5;
-//printf("clockticks %d\n",clock_ticks);
 	while (cticks == clock_ticks);
 	cticks = clock_ticks;
 }
@@ -116,7 +109,6 @@ int deinit_machine ()
 	union REGS r;
 
     /* restore old timer tick routines */
-//    DosSetRealProtVec(IRQ0, old_prot_timer_tick, old_real_timer_tick,NULL, NULL);
 	_dos_setvect( IRQ0, prev_int_irq0 );
 
 	memset(&r,0x0,sizeof(r));
@@ -268,7 +260,7 @@ static int pc_get_key ()
 }
 
 
-void __interrupt __far timer_rtn()
+void interrupt far timer_rtn()
   {
     ++clock_ticks;
     _chain_intr( prev_int_irq0 );

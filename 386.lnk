@@ -1,6 +1,10 @@
-agi.obj,agi_v2.obj,agi_v3.obj,checks.obj,cli.obj,console.obj,cycle.obj,daudio.obj,fileglob.obj,font.obj,getopt.obj,getopt1.obj
-global.obj,graphics.obj,id.obj,inv.obj,keyboard.obj,logic.obj,lzw.obj,main.obj,menu.obj,motion.obj,pharcga3.obj,objects.obj
-op_cmd.obj,op_dbg.obj,op_test.obj,patches.obj,path.obj,picture.obj,rand.obj,savegame.obj,silent.obj,sound.obj,sprite.obj
-text.obj,view.obj,words.obj,picview.obj
+agi.obj,agi_v2.obj,agi_v3.obj,checks.obj,cli.obj,console.obj,cycle.obj,daudio.obj
+fileglob.obj,font.obj,getopt.obj,getopt1.obj,global.obj,graphics.obj,id.obj,inv.obj
+keyboard.obj,logic.obj,lzw.obj,main.obj,menu.obj,motion.obj,pharcga3.obj,objects.obj
+op_cmd.obj,op_dbg.obj,op_test.obj,patches.obj,path.obj,picture.obj,rand.obj
+savegame.obj,silent.obj,sound.obj,sprite.obj,text.obj,view.obj,words.obj,picview.obj
+\wat7\phar4\bin\stub386.exe
 -exe 386.exe
--lib \wat10\lib386\dos\clib3s.lib \wat10\lib386\math387s.lib \wat10\lib386\dos\emu387.lib
+-lib \wat7\lib10\clib3s.lib
+-lib \wat7\lib10\math387s.lib
+-lib \wat7\lib10\emu387.lib

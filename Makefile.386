@@ -12,28 +12,23 @@ OPT = /Ox
 CPU = 
 OS = 
 DEBUG = # /Zi
-INCLUDES = -I..\h -Iinclude
+INCLUDES =  -Iinclude
 
 CFLAGS =  $(MEM) $(CPU) $(OPT)  $(OS) $(DEBUG) -D__MSDOS__  $(INCLUDES)
 ZCFLAGS = $(MEM) $(CPU) $(ZOPT) $(OS) $(DEBUG) -D__MSDOS__  $(INCLUDES)
 
 386.exe: $(OBJS) pharcga3.obj
-	linkr.exe @386
-	copy /Y 386.exp \dos\sq2
+	386linkr.exe @386
+	copy /Y 386.exe \dos\sq2
 	dosbox
 
-op_cmd.obj: op_cmd.c
-	msdos wcc386 $(ZCFLAGS) op_cmd.c -od -Iinclude
-
-# sound.c(616) : fatal error C1001: Internal Compiler Error
-#                (compiler file '@(#)regMD.c:1.100', line 1017)
-#                Contact Microsoft Product Support Services
-#sound.obj: sound.c
-#	msdos wcc386  $(ZCFLAGS) sound.c -od -Ih -Iinclude
+pharcga3.obj: pharcga3.c
+	@echo this needs to be built with Watcom 10
+	@echo
+	@echo $(CC) $(CFLAGS) -c pharcga3.c
+	uudecode pharcga3.txt
 
 daudio.obj: dummy.c
 	$(CC) $(CFLAGS) /c /Fodaudio.obj dummy.c
 
-#getopt.obj: getopt.c
-#	msdos wcc386 getopt.c $(ZCFLAGS)
 
